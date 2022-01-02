@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'settings_app',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,11 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CELERY_BROKER_URL=os.environ.get("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND =os.environ.get("CELERY_RESULT_BACKEND")
+CELERY_BEAT_SCHEDULE = {
+    "check-and-send-alerts": {
+        "task": "settings_app.tasks.check_and_send_alerts",
+        "schedule": 60,
+    }
+}

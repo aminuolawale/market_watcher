@@ -19,6 +19,39 @@ services:
       - ./.env
     depends_on:
       - db
+    links:
+      - redis
+
+  redis:
+    image: redis:alpine
+
+  celery:
+    build: .
+    command: celery -A market_watcher worker --loglevel=debug
+    volumes:
+      - .:/code
+    env_file:
+      - ./.env
+    links:
+      - redis
+    depends_on:
+      - redis
+      - db
+
+  celery-beat:
+    build: .
+    command: celery -A market_watcher worker --loglevel=debug -B
+    volumes:
+      - .:/code
+    env_file:
+      - ./.env
+    links:
+      - redis
+    depends_on: 
+      - redis
+      - db
+
+
 
 volumes:
   postgres_data:
