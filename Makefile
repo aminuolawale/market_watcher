@@ -4,11 +4,11 @@ rebuild-and-start:
 start:
 	docker-compose up
 
-make_migrations:
+migrations:
 	docker-compose  run web python manage.py makemigrations
 
 migrate:
-	docker-compose  run web python manage.py migrate
+	docker-compose  run web python manage.py migrate $(appname) $(node)
 
 startapp:
 	docker-compose run web python manage.py startapp $(appname)
@@ -18,3 +18,6 @@ ishell:
 
 shell:
 	docker-compose  run web python manage.py shell 
+
+createsuperuser:
+	docker-compose  run web python manage.py createsuperuser

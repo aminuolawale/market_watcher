@@ -15,7 +15,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+HOSTNAME = os.environ.get("HOSTNAME")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -39,7 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'settings_app',
+    'rest_framework.authtoken',
+    'users',
+    'rest_auth',
+    'rest_auth.registration',
+    'allauth',
+    'allauth.account',
+    'alerts',
+    'coins',
 ]
 
 MIDDLEWARE = [
@@ -106,6 +113,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -134,7 +152,26 @@ CELERY_BROKER_URL=os.environ.get("CELERY_BROKER_URL")
 CELERY_RESULT_BACKEND =os.environ.get("CELERY_RESULT_BACKEND")
 CELERY_BEAT_SCHEDULE = {
     "check-and-send-alerts": {
-        "task": "settings_app.tasks.check_and_send_alerts",
+        "task": "alerts.tasks.check_and_send_alerts",
         "schedule": 60,
     }
 }
+
+# user model
+AUTH_USER_MODEL = "users.User"
+
+
+
+ 
+
+
+SITE_ID = 1
+
+
+#
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'aminuolawalekan@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
