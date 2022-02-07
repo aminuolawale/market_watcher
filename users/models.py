@@ -4,10 +4,12 @@ from django.contrib.auth.models import AbstractUser
 from .managers import UserManager
 from secrets import token_hex
 
+
 class VerificationToken(models.Model):
     user = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    key  = models.TextField()
+    key = models.TextField()
     sent = models.BooleanField(default=False)
+
 
 class User(AbstractUser):
     username = None
@@ -30,11 +32,4 @@ class User(AbstractUser):
         return VerificationToken.objects.filter(user=self).first()
 
     def generate_verification_token(self):
-        print("generating verification token")
         return VerificationToken.objects.create(user=self, key=token_hex(32))
-
-
-
-
-
-

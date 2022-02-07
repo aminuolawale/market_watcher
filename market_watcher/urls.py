@@ -16,20 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
-from rest_framework_jwt.views import obtain_jwt_token
-from users.api import Signup,  VerifyUser
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+from users.api import Signup, VerifyUser
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/coins/', include("coins.urls")),
-    path('admin/', admin.site.urls),
-    url(r'auth/login/', obtain_jwt_token),
-    path(r'auth/signup/', Signup.as_view()),
-    path(r'auth/verify/<str:token>/', VerifyUser.as_view()),
-
-
-    # url(r'^rest-auth/', include('rest_auth.urls')),
-    # url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
-    # url(r'^account/', include('allauth.urls')),
-    # url(r'^accounts-rest/registration/account-confirm-email/(?P<key>.+)/$', confirm_email, name='account_confirm_email'),
+    path("admin/", admin.site.urls),
+    path("api/signup/", Signup.as_view()),
+    path("api/verify/<str:token>/", VerifyUser.as_view()),
+    path("api/login/", TokenObtainPairView.as_view()),
+    path("api/refresh-token/", TokenRefreshView.as_view()),
+    path("api/coins/", include("coins.urls")),
+    path("api/alerts/", include("alerts.urls")),
 ]

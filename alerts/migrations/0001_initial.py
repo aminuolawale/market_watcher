@@ -9,36 +9,84 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('coins', '0001_initial'),
+        ("coins", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Alert',
+            name="Alert",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('criteria', models.CharField(choices=[('BELOW', 'below'), ('ABOVE', 'above')], max_length=20)),
-                ('value', models.FloatField()),
-                ('max_executions', models.IntegerField()),
-                ('date_created', models.DateTimeField(auto_now_add=True)),
-                ('last_updated', models.DateTimeField(auto_now=True)),
-                ('coin', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='coins.coin')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "criteria",
+                    models.CharField(
+                        choices=[("BELOW", "below"), ("ABOVE", "above")], max_length=20
+                    ),
+                ),
+                ("value", models.FloatField()),
+                ("max_executions", models.IntegerField()),
+                ("date_created", models.DateTimeField(auto_now_add=True)),
+                ("last_updated", models.DateTimeField(auto_now=True)),
+                (
+                    "coin",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="coins.coin"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='AlertReactivator',
+            name="AlertReactivator",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('alert', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='reactivator', to='alerts.alert')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "alert",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="reactivator",
+                        to="alerts.alert",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='AlertExecution',
+            name="AlertExecution",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('data', models.TextField()),
-                ('time', models.DateTimeField(auto_now_add=True)),
-                ('alert', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='executions', to='alerts.alert')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("data", models.TextField()),
+                ("time", models.DateTimeField(auto_now_add=True)),
+                (
+                    "alert",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="executions",
+                        to="alerts.alert",
+                    ),
+                ),
             ],
         ),
     ]

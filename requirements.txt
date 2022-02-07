@@ -1,8 +1,6 @@
 Django>=3.0, < 4.0
-django-allauth==0.48.0
-django-rest-auth==0.9.5
 djangorestframework==3.13.1
-djangorestframework-jwt>=1.0.0
+djangorestframework-simplejwt==5.0.0
 celery==5.2.3
 ipython==7.30.1
 psycopg2>=2.8

@@ -7,20 +7,33 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Coin',
+            name="Coin",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=20, verbose_name='Full Name of Coin')),
-                ('code', models.CharField(max_length=3, verbose_name='3 Digit code of Coin')),
-                ('description', models.TextField()),
-                ('is_active', models.BooleanField(default=True)),
-                ('date_created', models.DateTimeField(auto_now_add=True)),
-                ('last_updated', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=20, verbose_name="Full Name of Coin"),
+                ),
+                (
+                    "code",
+                    models.CharField(max_length=3, verbose_name="3 Digit code of Coin"),
+                ),
+                ("description", models.TextField()),
+                ("is_active", models.BooleanField(default=True)),
+                ("date_created", models.DateTimeField(auto_now_add=True)),
+                ("last_updated", models.DateTimeField(auto_now=True)),
             ],
         ),
     ]

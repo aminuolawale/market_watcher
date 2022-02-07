@@ -1,9 +1,6 @@
 from rest_framework import serializers
 
 
-
-
-
 class CoinSerializer(serializers.Serializer):
     name = serializers.CharField()
     code = serializers.CharField()
