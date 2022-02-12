@@ -21,6 +21,7 @@ services:
       - db
     links:
       - redis
+      - db
 
   redis:
     image: redis:alpine
