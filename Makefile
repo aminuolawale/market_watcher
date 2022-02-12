@@ -22,8 +22,8 @@ shell:
 createsuperuser:
 	docker-compose  run web python manage.py createsuperuser
 
-venv:
+:
 	pip3 install virtualenv==20.13.1 && virtualenv .venv -p /usr/bin/python3
 
 precommit:
-	pre-commit install
+	pip3 install pre-commit==2.17.0 && pre-commit install
