@@ -3,3 +3,4 @@ data
 celerybeat-schedule
 .venv
 venv
+.idea
