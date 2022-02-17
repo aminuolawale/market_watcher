@@ -23,7 +23,7 @@ HOSTNAME = os.environ.get("HOSTNAME")
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-+^2=32b11^xp(b#7nb33cpvp=i9!lrs95fi*^-$lp$muq9sm)n"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
