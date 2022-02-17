@@ -33,7 +33,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "0.0.0.0",
     "18.192.141.187",
-    "marketwatcher.aminuolawale.com",
+    "marketwatcher-dev.aminuolawale.com",
 ]
 
 
