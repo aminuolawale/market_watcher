@@ -13,7 +13,7 @@ User = get_user_model()
 def send_verification_email(email: str) -> None:
     user = User.objects.get(email=email)
     verification_token = user.verification_token
-    verification_link = f"{settings.HOSTNAME}/auth/verify/{verification_token.key}/"
+    verification_link = f"{settings.HOSTNAME}/api/verify/{verification_token.key}/"
     print(verification_link)
     subject = "Market Watcher"
     body = f"Thank you for signing up with market watcher use this link {verification_link} to complete your registration"
