@@ -1,0 +1,3 @@
+COMMANDS:
+    INSTALL KUBERNETES: gcloud components install kubectl
+    SET PROJECT ID ENV VAR: export PROJECT_ID=market-watcher-341109

@@ -4,3 +4,4 @@ celerybeat-schedule
 .venv
 venv
 .idea
+LightsailDefaultKey-eu-central-1.pem

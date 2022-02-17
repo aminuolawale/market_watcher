@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 
 services:
   db:
@@ -10,6 +10,7 @@ services:
 
   web:
     build: .
+    image: aminuolawale/market_watcher_web
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
@@ -28,6 +29,7 @@ services:
 
   celery:
     build: .
+    image: aminuolawale/market_watcher_celery
     command: celery -A market_watcher worker --loglevel=debug
     volumes:
       - .:/code
@@ -41,6 +43,7 @@ services:
 
   celery-beat:
     build: .
+    image: aminuolawale/market_watcher_celery_beat
     command: celery -A market_watcher worker --loglevel=debug -B
     volumes:
       - .:/code
@@ -48,7 +51,7 @@ services:
       - ./.env
     links:
       - redis
-    depends_on: 
+    depends_on:
       - redis
       - db
 
