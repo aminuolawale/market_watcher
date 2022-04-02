@@ -11,7 +11,7 @@ LIGHTSAIL_STATIC_IP := 18.192.141.187
 echo-vars:
 	echo PROJECT_NAME = ${PROJECT_NAME} && echo PROJECT_ID =  ${PROJECT_ID} && echo REGION = ${REGION} && echo COMPUTE_ZONE = ${COMPUTE_ZONE}
 
-rebuild-and-start:`
+rebuild-and-start:
 	docker-compose up --build
 
 start:
