@@ -5,6 +5,7 @@ export const LoginBox = styled.div`
   padding: 40px;
   width: ${({ width }) => width || "600px"};
   max-width: 100%;
+  min-height: 300px;
   margin: 0px auto;
   box-sizing: border-box;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.09);
